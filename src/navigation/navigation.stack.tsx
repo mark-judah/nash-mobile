@@ -1,8 +1,10 @@
-import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
+import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import React from 'react';
 import { BackButton, DeleteButton } from './navigation.utils';
-import { RootStack } from './root.navigation.stack';
-import { WelcomeScreen } from '../features/onboarding/welcome.screen';
+import WelcomeScreen from '../features/onboarding/welcome.screen';
+import { OnboardingRootStack } from './root.navigation.stack';
+import LoginScreen from '../features/onboarding/login.screen';
+import RegisterScreen from '../features/onboarding/register.screen';
 
 /**
  * Hides the header.
@@ -12,7 +14,7 @@ const RootStackScreenHideHeader = {
 };
 
 /**
- * 
+ * Allows users to define header of a screen with a back button.
  * @param onPress 
  * @param title 
  * @returns 
@@ -50,11 +52,21 @@ export function headerWithDeleteButton(
 
 // SetUpRecoveryPhrase
 export const onboardingNavigationStack = (
-  <>
-    <RootStack.Screen
+  <OnboardingRootStack.Navigator initialRouteName="WelcomeScreen">
+    <OnboardingRootStack.Screen
       name="WelcomeScreen"
-      component={WelcomeScreen} 
+      component={WelcomeScreen}
       options={RootStackScreenHideHeader}
     />
-  </>
+    <OnboardingRootStack.Screen
+      name="LoginScreen"
+      component={LoginScreen}
+      options={RootStackScreenHideHeader}
+    />
+    <OnboardingRootStack.Screen
+      name="RegisterScreen"
+      component={RegisterScreen}
+      options={RootStackScreenHideHeader}
+    />
+  </OnboardingRootStack.Navigator>
 );

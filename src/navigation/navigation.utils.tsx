@@ -43,7 +43,7 @@ export const BackButton: React.FC<BackButtonProps> = props => {
       onPress={() => {
         props.onPress();
       }}>
-      <Icon name="chevron-left" size={30} color={AppColors.green} />
+      <Icon name="chevron-left" size={30} color={AppColors.darkblue} />
     </Pressable>
   );
 };
@@ -67,7 +67,7 @@ export const DeleteButton: React.FC<BackButtonProps> = props => {
       <Icon
         name="backspace"
         size={24}
-        color={AppColors.green}
+        color={AppColors.darkblue}
         // style={styles.number}
       />
     </Pressable>

@@ -5,10 +5,10 @@ import { onboardingNavigationStack } from './navigation.stack';
 /**
  * The apps root navigation stack.
  */
-export const RootStack =
+export const OnboardingRootStack =
   createNativeStackNavigator<OnboardingNavigationStackParamsList>();
 
 // TODO https://reactnavigation.org/docs/typescript/
-export const RootNavigationStack = () => {
-  return <RootStack.Navigator>{onboardingNavigationStack}</RootStack.Navigator>;
+export const OnboardingNavigationStack = () => {
+  return <OnboardingRootStack.Navigator>{onboardingNavigationStack}</OnboardingRootStack.Navigator>;
 };

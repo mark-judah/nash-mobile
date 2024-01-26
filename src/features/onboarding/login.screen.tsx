@@ -5,23 +5,22 @@ import { Screen } from 'react-native-screens';
 import { AppColors } from '../../navigation/app.colors';
 import { OnboardingNavigationStackParamsList } from '../../navigation/navigation.params.type';
 
-
 /**
  * Contains the onboarding UI.
  */
-const WelcomeScreen = (props: StackProps) => {
-
+const LoginScreen = (props: StackProps) => {
+    
     return (
         <Screen>
             <View style={style.container}>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
+                <Text>Login Screen</Text>
+                <Text>Login Screen</Text>
+                <Text>Login Screen</Text>
+                <Text>Login Screen</Text>
+                <Text>Login Screen</Text>
+                <Text>Login Screen</Text>
+                <Text>Login Screen</Text>
+                <Text>Login Screen</Text>
             </View>
         </Screen>
     );
@@ -29,7 +28,7 @@ const WelcomeScreen = (props: StackProps) => {
 
 type StackProps = NativeStackScreenProps<
     OnboardingNavigationStackParamsList,
-    'WelcomeScreen'
+    'LoginScreen'
 >;
 
 const style = StyleSheet.create({
@@ -41,4 +40,4 @@ const style = StyleSheet.create({
     },
 });
 
-export default WelcomeScreen;
+export default LoginScreen;

@@ -5,51 +5,79 @@
  * @format
  */
 
-import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import type { PropsWithChildren } from 'react';
-import {
-  StyleSheet,
-  useColorScheme,
-} from 'react-native';
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
 import { navigationRef } from './src/navigation/navigation.service';
+import { OnboardingNavigationStack } from './src/navigation/root.navigation.stack';
+import { NavigationContainer } from '@react-navigation/native';
+// props: Props
 
+const App: React.FC<Props> = () => {
+  const routeNameRef = React.useRef<String>();
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  /**
+   * On navigation container ready.
+   */
+  const onNavContainerReady = () => {
+    routeNameRef.current = routeNameRef.current =
+      typeof navigationRef?.current?.getCurrentRoute()?.name === 'undefined'
+        ? ''
+        : navigationRef?.current?.getCurrentRoute()?.name;
+  };
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  /**
+   * On navigation container state change.
+   */
+  const onNavContainerStateChange = async () => {
+    const previousRouteName = routeNameRef.current;
+    const currentRouteName = navigationRef?.current?.getCurrentRoute()?.name;
+
+    // if (previousRouteName !== currentRouteName) {
+    //   await analytics().logScreenView({
+    //     screen_name: currentRouteName,
+    //     screen_class: currentRouteName,
+    //   });
+    // }
+    routeNameRef.current =
+      typeof currentRouteName === 'undefined' ? '' : currentRouteName;
   };
 
   return (
-    <NavigationContainer ref={navigationRef} children={undefined}>
+    <NavigationContainer
+      ref={navigationRef}
+      onReady={onNavContainerReady}
+      onStateChange={onNavContainerStateChange}>
+
+      {/* {props.onboarding_status ===
+          OnboardingStatusNames.onboarding_complete ? (
+          <NavigationDrawer />
+        ) : ( */}
+      <OnboardingNavigationStack />
+      {/* )} */}
 
     </NavigationContainer>
 
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+// const mapStateToProps = (state: RootState) => ({
+//   onboarding_status: state.onboarding.status.name,
+//   publicAddress: state.onboarding.publicAddress,
+// });
+
+// const mapDispatchToProps = {
+//   dispatchFetchMyTransactions: generateActionQueryMyTransactions,
+//   dispatchFetchPendingTransactions: generateActionQueryPendingTransactions,
+// };
+
+// const connector = connect(mapStateToProps, mapDispatchToProps);
+
+// type ReduxProps = ConnectedProps<typeof connector>;
+
+// interface Props extends ReduxProps {}
+
+interface Props {}
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+
 
 export default App;

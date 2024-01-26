@@ -9,19 +9,19 @@ import { OnboardingNavigationStackParamsList } from '../../navigation/navigation
 /**
  * Contains the onboarding UI.
  */
-const WelcomeScreen = (props: StackProps) => {
+const RegisterScreen = (props: StackProps) => {
 
     return (
         <Screen>
             <View style={style.container}>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
+                <Text>Register Screen</Text>
+                <Text>Register Screen</Text>
+                <Text>Register Screen</Text>
+                <Text>Register Screen</Text>
+                <Text>Register Screen</Text>
+                <Text>Register Screen</Text>
+                <Text>Register Screen</Text>
+                <Text>Register Screen</Text>
             </View>
         </Screen>
     );
@@ -29,7 +29,7 @@ const WelcomeScreen = (props: StackProps) => {
 
 type StackProps = NativeStackScreenProps<
     OnboardingNavigationStackParamsList,
-    'WelcomeScreen'
+    'RegisterScreen'
 >;
 
 const style = StyleSheet.create({
@@ -41,4 +41,4 @@ const style = StyleSheet.create({
     },
 });
 
-export default WelcomeScreen;
+export default RegisterScreen;
