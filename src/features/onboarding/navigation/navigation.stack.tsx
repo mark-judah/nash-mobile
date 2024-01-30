@@ -1,10 +1,10 @@
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import React from 'react';
-import { BackButton, DeleteButton } from './navigation.utils';
-import WelcomeScreen from '../features/onboarding/welcome.screen';
-import { OnboardingRootStack } from '../features/onboarding/navigation/onboarding.navigation.stack';
-import LoginScreen from '../features/onboarding/login.screen';
-import RegisterScreen from '../features/onboarding/register.screen';
+import { BackButton, DeleteButton } from '../../../navigation/navigation.utils';
+import WelcomeScreen from '../welcome.screen';
+import { OnboardingRootStack } from './onboarding.navigation.stack';
+import LoginScreen from '../login.screen';
+import RegisterScreen from '../register.screen';
 
 /**
  * Hides the header.
