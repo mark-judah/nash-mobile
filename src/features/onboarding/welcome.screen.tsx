@@ -1,9 +1,10 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import { AppColors } from '../../utils/fonts/app.colors';
+import { AppColors } from '../../utils/theme/app.colors';
 import { OnboardingNavigationStackParamsList } from './navigation/navigation.params.type';
 import Screen from '../screen';
+import { FONTS } from '../../utils/theme/fonts';
 
 
 /**
@@ -16,7 +17,7 @@ const WelcomeScreen = (props: StackProps) => {
     return (
         <Screen>
             <View style={style.container}>
-                <Text>Welcome Screen</Text>
+                <Text style={style.header}>Welcome Screen</Text>
                 <Text>Welcome Screen</Text>
                 <Text>Welcome Screen</Text>
                 <Text>Welcome Screen</Text>
@@ -55,6 +56,10 @@ const style = StyleSheet.create({
         justifyContent: 'space-around',
         backgroundColor: AppColors.background,
     },
+    header: {
+        ...FONTS.body1,
+        color: AppColors.darkblue
+    }
 });
 
 export default WelcomeScreen;
