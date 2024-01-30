@@ -1,5 +1,5 @@
 import {createNavigationContainerRef} from '@react-navigation/native';
-import { OnboardingNavigationStackParamsList } from './navigation.params.type';
+import { OnboardingNavigationStackParamsList } from '../features/onboarding/navigation/navigation.params.type';
 
 /**
  * References an instance of the apps navigation container to allow us

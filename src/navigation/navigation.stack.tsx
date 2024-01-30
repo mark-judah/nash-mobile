@@ -2,7 +2,7 @@ import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import React from 'react';
 import { BackButton, DeleteButton } from './navigation.utils';
 import WelcomeScreen from '../features/onboarding/welcome.screen';
-import { OnboardingRootStack } from './root.navigation.stack';
+import { OnboardingRootStack } from '../features/onboarding/navigation/onboarding.navigation.stack';
 import LoginScreen from '../features/onboarding/login.screen';
 import RegisterScreen from '../features/onboarding/register.screen';
 
@@ -52,7 +52,8 @@ export function headerWithDeleteButton(
 
 // SetUpRecoveryPhrase
 export const onboardingNavigationStack = (
-  <OnboardingRootStack.Navigator initialRouteName="WelcomeScreen">
+  <>
+    {/* <OnboardingRootStack.Navigator initialRouteName="WelcomeScreen"> */}
     <OnboardingRootStack.Screen
       name="WelcomeScreen"
       component={WelcomeScreen}
@@ -68,5 +69,6 @@ export const onboardingNavigationStack = (
       component={RegisterScreen}
       options={RootStackScreenHideHeader}
     />
-  </OnboardingRootStack.Navigator>
+    {/* </OnboardingRootStack.Navigator> */}
+  </>
 );

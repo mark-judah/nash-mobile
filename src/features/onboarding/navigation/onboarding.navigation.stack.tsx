@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { OnboardingNavigationStackParamsList } from './navigation.params.type';
-import { onboardingNavigationStack } from './navigation.stack';
+import { onboardingNavigationStack } from '../../../navigation/navigation.stack';
 
 /**
  * The apps root navigation stack.
