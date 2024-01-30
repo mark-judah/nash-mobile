@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface nash_mobileTests : XCTestCase
+@interface NashTests : XCTestCase
 
 @end
 
-@implementation nash_mobileTests
+@implementation NashTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {
