@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Pressable} from 'react-native';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
-import { AppColors } from '../utils/fonts/app.colors';
+import { AppColors } from '../utils/theme/app.colors';
 /**
  * Hides the header.
  */

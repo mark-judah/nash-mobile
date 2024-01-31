@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Screen } from 'react-native-screens';
-import { AppColors } from '../../utils/fonts/app.colors';
+import { AppColors } from '../../utils/theme/app.colors';
 import { OnboardingNavigationStackParamsList } from './navigation/navigation.params.type';
 
 

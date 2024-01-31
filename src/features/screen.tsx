@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import React, { PropsWithChildren } from 'react';
 import { heightPercentageToDP } from 'react-native-responsive-screen';
-import { AppColors } from '../utils/fonts/app.colors';
+import { AppColors } from '../utils/theme/app.colors';
 
 const height = heightPercentageToDP('100.0%');
 
