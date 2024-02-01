@@ -5,6 +5,9 @@ import { AppColors } from '../../utils/theme/app.colors';
 import { OnboardingNavigationStackParamsList } from './navigation/navigation.params.type';
 import Screen from '../screen';
 import { FONTS } from '../../utils/theme/fonts';
+import { decrement, increment } from '../../app-redux-store/actions/counterActions';
+import { RootState } from '../../app-redux-store/store';
+import { useSelector, useDispatch } from 'react-redux'
 
 
 /**
@@ -12,31 +15,30 @@ import { FONTS } from '../../utils/theme/fonts';
  */
 const WelcomeScreen = (props: StackProps) => {
 
+    const count = useSelector((state: RootState) => state.count)
+    const dispatch = useDispatch()
+
     const navigation = props.navigation;
 
     return (
         <Screen>
             <View style={style.container}>
-                <Text style={style.header}>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
-                <Text>Welcome Screen</Text>
+                <Text style={style.header}>Welcome Screen  {count}</Text>
+
 
                 <Button
                     title="Log In"
                     onPress={() =>
-                        navigation.navigate('LoginScreen')
+                        dispatch(increment())
+                        // navigation.navigate('LoginScreen')
                     }
                 />
 
                 <Button
                     title="Register"
                     onPress={() =>
-                        navigation.navigate('RegisterScreen')
+                        // navigation.navigate('RegisterScreen')
+                        dispatch(decrement())
                     }
                 />
             </View>
