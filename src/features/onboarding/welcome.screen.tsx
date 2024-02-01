@@ -5,9 +5,9 @@ import { AppColors } from '../../utils/theme/app.colors';
 import { OnboardingNavigationStackParamsList } from './navigation/navigation.params.type';
 import Screen from '../screen';
 import { FONTS } from '../../utils/theme/fonts';
-import { decrement, increment } from '../../app-redux-store/actions/counterActions';
 import { RootState } from '../../app-redux-store/store';
 import { useSelector, useDispatch } from 'react-redux'
+import { ACTION_SET_LANGUAGE, ACTION_SET_USER_DATA } from '../user.profile/onboading.actions';
 
 
 /**
@@ -15,7 +15,7 @@ import { useSelector, useDispatch } from 'react-redux'
  */
 const WelcomeScreen = (props: StackProps) => {
 
-    const count = useSelector((state: RootState) => state.count)
+    const language = useSelector((state: RootState) => state.language)
     const dispatch = useDispatch()
 
     const navigation = props.navigation;
@@ -23,13 +23,13 @@ const WelcomeScreen = (props: StackProps) => {
     return (
         <Screen>
             <View style={style.container}>
-                <Text style={style.header}>Welcome Screen  {count}</Text>
+                <Text style={style.header}>Welcome Screen  {language}</Text>
 
 
                 <Button
                     title="Log In"
                     onPress={() =>
-                        dispatch(increment())
+                        dispatch(ACTION_SET_LANGUAGE("English"))
                         // navigation.navigate('LoginScreen')
                     }
                 />
@@ -38,7 +38,12 @@ const WelcomeScreen = (props: StackProps) => {
                     title="Register"
                     onPress={() =>
                         // navigation.navigate('RegisterScreen')
-                        dispatch(decrement())
+                        dispatch(ACTION_SET_USER_DATA({
+                            name: 'John Doe',
+                            email: '',
+                            phoneNumber: '',
+                            publicAddress: ''
+                        }))
                     }
                 />
             </View>
