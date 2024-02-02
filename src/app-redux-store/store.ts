@@ -1,13 +1,13 @@
 // store.ts
 import createSagaMiddleware from 'redux-saga';
 import { configureStore } from '@reduxjs/toolkit';
-import rootSaga from './sagas';
-import userProfileReducer from '../features/user.profile/user.profile.reducer';
+import { rootReducer } from './root.reducer';
+import { rootSaga } from './root.saga';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
-    reducer: userProfileReducer,
+    reducer: rootReducer,
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({
             // thunk: false,

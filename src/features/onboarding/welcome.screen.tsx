@@ -6,30 +6,27 @@ import { OnboardingNavigationStackParamsList } from './navigation/navigation.par
 import Screen from '../screen';
 import { FONTS } from '../../utils/theme/fonts';
 import { RootState } from '../../app-redux-store/store';
-import { useSelector, useDispatch } from 'react-redux'
-import { ACTION_SET_LANGUAGE, ACTION_SET_USER_DATA } from '../user.profile/onboading.actions';
+import { useDispatch, connect, ConnectedProps } from 'react-redux'
+import { actionSetLanguage } from '../user.profile/action.generators';
 
 
 /**
  * Contains the onboarding UI.
  */
-const WelcomeScreen = (props: StackProps) => {
-
-    const language = useSelector((state: RootState) => state.language)
-    const dispatch = useDispatch()
+const WelcomeScreen = (props: Props) => {
 
     const navigation = props.navigation;
 
     return (
         <Screen>
             <View style={style.container}>
-                <Text style={style.header}>Welcome Screen  {language}</Text>
+                <Text style={style.header}>Welcome Screen  {props.language}</Text>
 
 
                 <Button
                     title="Log In"
                     onPress={() =>
-                        dispatch(ACTION_SET_LANGUAGE("English"))
+                        props.dispatchSetLanguage("English")
                         // navigation.navigate('LoginScreen')
                     }
                 />
@@ -38,23 +35,13 @@ const WelcomeScreen = (props: StackProps) => {
                     title="Register"
                     onPress={() =>
                         // navigation.navigate('RegisterScreen')
-                        dispatch(ACTION_SET_USER_DATA({
-                            name: 'John Doe',
-                            email: '',
-                            phoneNumber: '',
-                            publicAddress: ''
-                        }))
+                        props.dispatchSetLanguage("Swahili")
                     }
                 />
             </View>
         </Screen>
     );
 };
-
-type StackProps = NativeStackScreenProps<
-    OnboardingNavigationStackParamsList,
-    'WelcomeScreen'
->;
 
 const style = StyleSheet.create({
     container: {
@@ -69,4 +56,27 @@ const style = StyleSheet.create({
     }
 });
 
-export default WelcomeScreen;
+/**
+ *
+ * @param state the applications state.
+ * @returns the props intended to be passed to the component from state variables.
+ */
+const mapStateToProps = (state: RootState) => ({
+    language: state.user_profile.language,
+    publicAddress: state.user_profile.public_address,
+});
+
+const mapDispatchToProps = {
+    dispatchSetLanguage: actionSetLanguage,
+};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+type ReduxProps = ConnectedProps<typeof connector>;
+
+type StackProps = NativeStackScreenProps<
+    OnboardingNavigationStackParamsList,
+    'WelcomeScreen'
+>;
+
+type Props = ReduxProps & StackProps;
+export default connector(WelcomeScreen);
