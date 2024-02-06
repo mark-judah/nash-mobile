@@ -3,19 +3,48 @@ import createSagaMiddleware from 'redux-saga';
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from './root.reducer';
 import { rootSaga } from './root.saga';
+import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
 
 const sagaMiddleware = createSagaMiddleware();
 
+/**
+ * Create redux persist configurations object.
+ */
+const persistConfig = {
+    key: 'root',
+    vsrsion: 1,
+    keyPrefix: '',
+    storage: storage,
+    // figure out what best to do with wallet.
+    blacklist: ['ui_state', 'wallet_balance', 'ramp'],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
 const store = configureStore({
-    reducer: rootReducer,
+    reducer: persistedReducer,
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({
             // thunk: false,
             serializableCheck: {
-                // ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
         }).concat(sagaMiddleware),
 });
+
+/**
+ * Method to run after rehydration.
+ */
+const postRehydration = () => { };
+
+/**
+ * Compose the persister object.
+ * @param store instance of redux store.
+ * @param config the persister config object.
+ * @param callback the method to run after rehydration.
+ */
+export const persistor = persistStore(store, null, postRehydration);
 
 sagaMiddleware.run(rootSaga);
 
