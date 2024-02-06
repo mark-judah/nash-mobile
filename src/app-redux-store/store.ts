@@ -6,6 +6,9 @@ import { rootSaga } from './root.saga';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
 import FilesystemStorage from 'redux-persist-filesystem-storage';
 
+/**
+ * Creates an instance of redux saga middleware.
+ */
 const sagaMiddleware = createSagaMiddleware();
 
 
@@ -21,8 +24,14 @@ const persistConfig = {
     blacklist: ['ui_state', 'wallet_balance', 'ramp'],
 };
 
+/**
+ * Makes sure that all the necessary redux store data are persisted.
+ */
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
+/**
+ * Configures the redux store.
+ */
 const store = configureStore({
     reducer: persistedReducer,
     middleware: getDefaultMiddleware =>
@@ -47,6 +56,9 @@ const postRehydration = () => { };
  */
 export const persistor = persistStore(store, null, postRehydration);
 
+/**
+ * Consume all the app sagas.
+ */
 sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
