@@ -4,9 +4,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from './root.reducer';
 import { rootSaga } from './root.saga';
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
-import storage from 'redux-persist/es/storage';
+import FilesystemStorage from 'redux-persist-filesystem-storage';
 
 const sagaMiddleware = createSagaMiddleware();
+
 
 /**
  * Create redux persist configurations object.
@@ -15,7 +16,7 @@ const persistConfig = {
     key: 'root',
     vsrsion: 1,
     keyPrefix: '',
-    storage: storage,
+    storage: FilesystemStorage,
     // figure out what best to do with wallet.
     blacklist: ['ui_state', 'wallet_balance', 'ramp'],
 };

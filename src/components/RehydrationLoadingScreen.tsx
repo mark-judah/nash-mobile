@@ -14,7 +14,7 @@ let ScreenHeight = Dimensions.get('window').height;
 export const RehydrationLoadingScreen = () => {
   return (
     <View style={style.container}>
-      <Text>Allen Muhani</Text>
+      <Text>Nash</Text>
     </View>
   );
 };
