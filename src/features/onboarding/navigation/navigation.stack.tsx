@@ -5,6 +5,8 @@ import WelcomeScreen from '../welcome.screen';
 import { OnboardingRootStack } from './onboarding.navigation.stack';
 import LoginScreen from '../login.screen';
 import RegisterScreen from '../register.screen';
+import HomeScreen from '../../home/home.screen';
+
 
 /**
  * Hides the header.
@@ -59,7 +61,7 @@ export const onboardingNavigationStack = (
       component={WelcomeScreen}
       options={RootStackScreenHideHeader}
     />
-    <OnboardingRootStack.Screen
+     <OnboardingRootStack.Screen
       name="LoginScreen"
       component={LoginScreen}
       options={RootStackScreenHideHeader}
@@ -67,6 +69,11 @@ export const onboardingNavigationStack = (
     <OnboardingRootStack.Screen
       name="RegisterScreen"
       component={RegisterScreen}
+      options={RootStackScreenHideHeader}
+    /> 
+    <OnboardingRootStack.Screen
+      name="HomeScreen"
+      component={HomeScreen}
       options={RootStackScreenHideHeader}
     />
     {/* </OnboardingRootStack.Navigator> */}

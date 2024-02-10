@@ -9,13 +9,13 @@ export const FONTS = {
   displayBold: {
     fontFamily: 'InknutAntiqua-Bold',
     fontSize: hp('3.448%'),
-    lineHeight: hp('5.0%'),
+    lineHeight: hp('8.0%'),
   },
   // Headers
   h1: {
     fontFamily: 'InknutAntiqua-Regular',
     fontSize: hp('3.448%'),
-    lineHeight: hp('5.0%'),
+    lineHeight: hp('8.0%'),
   },
   h2: {
     fontFamily: 'InknutAntiqua-Medium',
@@ -100,9 +100,21 @@ export const FONTS = {
   },
 
   body9: {
-    fontFamily: 'Kadwa-Regular',
-    fontSize: hp('1.477%'),
-    lineHeight: hp('2.2167%'),
+    fontFamily: 'IstokWeb-Regular',
+    fontSize: hp('1.97%'),
+    lineHeight: hp('2.9556%'),
+  },
+
+  body10: {
+    fontFamily: 'IstokWeb-Bold',
+    fontSize: hp('4.448%'),
+    lineHeight: hp('8.0%'),
+  },
+
+  body11: {
+    fontFamily: 'IstokWeb-Bold',
+    fontSize: hp('2.448%'),
+    lineHeight: hp('8.0%'),
   },
 
   // Headline
