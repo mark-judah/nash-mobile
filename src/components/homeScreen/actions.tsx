@@ -1,38 +1,42 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import * as React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {OnboardingNavigationStackParamsList} from '../../features/onboarding/navigation/navigation.params.type';
-import {Screen} from 'react-native-screens';
 import {AppColors} from '../../utils/theme/app.colors';
 import {FONTS} from '../../utils/theme/fonts';
+import { OnboardingNavigationStack } from '../../features/onboarding/navigation/onboarding.navigation.stack';
 
 /**
  * Actions UI.
  */
-const Actions = () => {
+const Actions = (props: Props) => {
+  const navigation = props.navigation;
+  
   const items = [
     {
-      logo: require('../../../assets/images/send.png'),
+      icon: require('../../../assets/images/send.png'),
       title: 'Send Money',
-      color:AppColors.darkblue
-
+      color: AppColors.darkblue,
+      navigate: () =>navigation.navigate('SendMoneyScreen')
     },
     {
-      logo: require('../../../assets/images/request.png'),
+      icon: require('../../../assets/images/request.png'),
       title: 'Request Money',
-      color:'#0E295421'
-
+      color: '#0E295421',
+      navigate: () =>navigation.navigate('RequestMoneyScreen')
     },
     {
-      logo: require('../../../assets/images/withdraw.png'),
+      icon: require('../../../assets/images/withdraw.png'),
       title: 'Withdraw',
-      color:'#0E295421'
+      color: '#0E295421',
+      navigate: () =>navigation.navigate('WithdrawMoneyScreen')
 
     },
     {
-      logo: require('../../../assets/images/buy.png'),
+      icon: require('../../../assets/images/buy.png'),
       title: 'Buy Airtime',
-      color:'#0E295421'
+      color: '#0E295421',
+      navigate: () =>navigation.navigate('BuyAirtimeScreen')
 
     },
   ];
@@ -40,35 +44,40 @@ const Actions = () => {
     <View>
       <View style={styles.row}>
         {items.map(item => (
-          <View
-            style={{
-              flexDirection: 'column',
-              padding: 10,
-              borderRadius: 15,
-              backgroundColor: item.color,
-              height:70,
-              width:80,
-              marginHorizontal:4
-            }}>
-            <Image
-              source={item.logo}
-              style={{ alignSelf: 'center'}}
-            />
-            <Text
+          <Pressable onPress={item.navigate }>
+            <View
               style={{
-                marginTop: 20,
-                marginLeft: 10,
-                ...FONTS.body8,
-                color: '#ffffff',
+                flexDirection: 'column',
+                padding: 10,
+                borderRadius: 15,
+                backgroundColor: item.color,
+                height: 60,
+                width: 80,
+                marginHorizontal: 4,
+                marginBottom:10
               }}>
-              {item.title}
-            </Text>
-          </View>
+              <Image source={item.icon} style={{alignSelf: 'center',width:20,height:20}}  />
+              <Text
+                style={{
+                  marginTop: 10,
+                  marginLeft: 10,
+                  ...FONTS.body8,
+                  color: '#ffffff',
+                }}>
+                {item.title}
+              </Text>
+            </View>
+          </Pressable>
         ))}
       </View>
     </View>
   );
 };
+type StackProps = NativeStackScreenProps<
+  OnboardingNavigationStackParamsList,
+  'HomeScreen'
+>;
+type Props = StackProps;
 
 const styles = StyleSheet.create({
   row: {

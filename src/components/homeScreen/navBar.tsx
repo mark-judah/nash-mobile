@@ -1,6 +1,6 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import * as React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {OnboardingNavigationStackParamsList} from '../../features/onboarding/navigation/navigation.params.type';
 import {Screen} from 'react-native-screens';
 import {AppColors} from '../../utils/theme/app.colors';
@@ -9,18 +9,27 @@ import {FONTS} from '../../utils/theme/fonts';
 /**
  * NavBar UI.
  */
-const NavBar = () => {
+const [drawerState, setDrawerState] = React.useState(false);
+
+const ToggleDrawer = () => {
+  setDrawerState(current => !current);
+};
+const NavBar = (props: Props) => {
+  const navigation = props.navigation;
+
   return (
     <View>
       <View style={styles.row1}>
         <View style={styles.row2}>
-          <Image
-            style={styles.jam}
-            source={require('../../../assets/images/jam_menu.png')}
-          />
+          <Pressable onPress={ToggleDrawer}>
+            <Image
+              style={styles.jam}
+              source={require('../../../assets/images/jam_menu.png')}
+            />
+          </Pressable>
           <Text
             style={{
-              marginTop: 15,
+              marginTop: 5,
               marginLeft: 10,
               ...FONTS.body4,
               color: AppColors.darkblue,
@@ -29,10 +38,12 @@ const NavBar = () => {
           </Text>
         </View>
 
-        <Image
-          style={styles.qr}
-          source={require('../../../assets/images/qr.png')}
-        />
+        <Pressable onPress={() => navigation.navigate('QrCodeScreen')}>
+          <Image
+            style={styles.qr}
+            source={require('../../../assets/images/qr.png')}
+          />
+        </Pressable>
       </View>
     </View>
   );
@@ -41,10 +52,11 @@ const NavBar = () => {
 const styles = StyleSheet.create({
   jam: {
     marginLeft: 15,
-    marginTop: 15,
+    marginTop: 5,
   },
   qr: {
-    margin: 15,
+    marginRight: 15,
+    marginTop: 5,
   },
   row1: {
     flexDirection: 'row',
@@ -57,4 +69,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NavBar;
+type StackProps = NativeStackScreenProps<
+  OnboardingNavigationStackParamsList,
+  'HomeScreen'
+>;
+// type Props = ReduxProps & StackProps;
+type Props = StackProps;
+
+export {NavBar, ToggleDrawer};

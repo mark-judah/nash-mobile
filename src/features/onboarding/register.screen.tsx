@@ -12,6 +12,7 @@ import {OnboardingNavigationStackParamsList} from './navigation/navigation.param
 import {FONTS} from '../../utils/theme/fonts';
 import {AppColors} from '../../utils/theme/app.colors';
 import CheckBox from '@react-native-community/checkbox';
+import { useState } from 'react';
 
 /**
  * Template UI.
@@ -27,6 +28,7 @@ const Register = (props: Props) => {
       <View style={{flex: 1}}>
         <Text style={styles.title}>Hello,</Text>
         <Text style={styles.body}>Register to continue...</Text>
+       
         <TextInput style={styles.inputText} defaultValue="Phone Number" />
         <TextInput style={styles.inputText} defaultValue="Password" />
         <TextInput style={styles.inputText} defaultValue="Confirm Password" />

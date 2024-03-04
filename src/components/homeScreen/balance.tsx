@@ -39,10 +39,14 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 15,
+        marginBottom: 20,
+        height:150
       },
       home_bg: {
         borderRadius: 20,
+        marginTop:10,
+        width:300,
+        height:160
       },
       textContainer: {
         position: 'absolute',

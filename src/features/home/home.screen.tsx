@@ -5,7 +5,7 @@ import {OnboardingNavigationStackParamsList} from '../onboarding/navigation/navi
 import {Screen} from 'react-native-screens';
 import {FONTS} from '../../utils/theme/fonts';
 import {AppColors} from '../../utils/theme/app.colors';
-import NavBar from '../../components/homeScreen/navBar';
+import {NavBar} from '../../components/homeScreen/navBar';
 import Balance from '../../components/homeScreen/balance';
 import Swiper from 'react-native-swiper';
 import Card1 from '../../components/homeScreen/card1';
@@ -13,6 +13,7 @@ import Actions from '../../components/homeScreen/actions';
 import Transactions from '../../components/homeScreen/transactions';
 import LoginScreren from '../../features/onboarding/login.screen';
 import BottomNav from '../../components/bottomNav';
+import Drawer from '../../components/homeScreen/drawer';
 
 /**
  * Home UI.
@@ -23,19 +24,27 @@ const Home = (props: Props) => {
 
   return (
     <View style={styles.container}>
-      <NavBar />
+            {/* <Drawer /> */}
+
+      <NavBar {...props} />
       <Balance />
-      <Swiper style={styles.swiper} height={0} dotColor={AppColors.darkblue} activeDotColor='#0E295487' showsButtons={false}>
+      <Swiper
+        style={styles.swiper}
+        height={0}
+        dotColor={AppColors.darkblue}
+        activeDotColor="#0E295487"
+        showsButtons={false}>
         <Card1 />
-        <Card1 />
+        <Image
+          style={styles.image}
+          source={require('../../../assets/images/slide2.png')}
+        />
         <Card1 />
       </Swiper>
-      <Actions />
-      <Transactions/>
-      <BottomNav/>
-
+      <Actions {...props} />
+      <Transactions />
+      <BottomNav {...props} />
     </View>
-
   );
 };
 
@@ -44,9 +53,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
   },
-  swiper:{
-    marginBottom:0
-  }
+  swiper: {
+    marginBottom: 0,
+    height:80
+  },
+  image: {
+    borderRadius: 20,
+    backgroundColor: AppColors.darkblue,
+    height: 80,
+    width:300,
+    marginHorizontal: 30,
+    marginBottom: 0,
+  },
 });
 
 type StackProps = NativeStackScreenProps<
